@@ -16,22 +16,61 @@
     <div class="container">
         <h1>Welcome to Galgalo Gallery</h1>
         {% for image in images %}
-        <div class= "hover">
-        <div class="row">
-            <div class="col-md-1 img-holder">
-               <img style="height:250px;width: 280px;padding: 5px;" src="{{image.image.url}}" alt="Image">
-               <div class="overlay">
-                <p><a data-toggle="modal" data-target="#{{image.id}}">{{image.name}}</a></p>
-            </div>
+        <div class="hover">
+            <div class="row">
+                <div class="col-md-1 img-holder">
+                    <img style="height:250px;width: 280px;padding: 5px;" src="{{image.image.url}}" alt="Image">
+                    <div class="overlay">
+                        <p><a data-toggle="modal" data-target="#{{image.id}}">{{image.name}}</a></p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
         {% empty %}
         <div class="row">
             <h2 class="text-center">There No Images</h2>
         </div>
         {% endfor %}
+
+        {% for image in images %}
+
+        <div class="modal fade bd-example-modal-lg" id="{{image.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12 modal-image">
+                                <a href="/image/{{image.category.photo_category}}/{{image.id}}">
+                                    <img style="height: 500px; width:500px;" src="{{image.image.url}}" alt="{{image.name}}">
+                                </a>
+                            </div>
+                            <div class="col-md-12 modal-text">
+                                <h5 class="modal-title" id="modal-title"> {{image.name}} </h5>
+                                <hr>
+                                <p>{{image.description}}</p>
+                                <p class="small">Posted <span
+                                        class="font-weight-bold">{{image.post_date|timesince}}</span> ago </p>
+                                <p class="small">Category <span
+                                        class="font-weight-bold">{{image.category.photo_category}}</span></p>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item"> Share
+                                        <a class="twitter-share-button" class="tooltip-test" title="Share on Twitter"
+                                            href="https://twitter.com/intent/tweet?text={{img.image.url}}"
+                                            target="_blank">
+                                            <i class="fa fa-twitter fa-1x"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
     </div>
     {% endblock %}
 
