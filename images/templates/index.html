@@ -14,25 +14,16 @@
 <div class="container">
     <div class="row">
         <h1>Welcome to Galgalo Gallery</h1>
-        <div class="card-body">
-            <h2>Filter by:</h2>
-            <div class="row">
-                <div class="col-md-8">
-                    <h3>Category</h3>
-                    {% for category in categories %}
-                    <div class='card'>
-                        <!-- <ul> -->
-                        <p> <a href="#"> {{category.photo_category}}</a></p>
-                        <!-- </ul> -->
-                    </div>
-                    {% endfor %}
-                </div>
+        
+                <div class="row">
                 <div class="col-md-4">
-                    <h3>Location</h3>
+                        <div class="card-body">
+                    <h2 id='col'>Filter by:</h2>
+                    <h3 id='col'>Location</h3>
                     {% for location in locations %}
                     <div class='card'>
                         <!-- <ul> -->
-                        <p><a href="#">{{location.image_location}}</a></p>
+                        <p><a href="/location/{{location.id}}">{{location.image_location}}</a></p>
                         <!-- </ul> -->
                     </div>
                     {% endfor %}
@@ -64,7 +55,7 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-12 modal-image">
-                                    <a href="/image/{{image.category.photo_category}}/{{image.id}}">
+                                    <a href="/image/{{image.category}}/{{image.id}}">
                                         <img style="height: 500px; width:500px;" src="{{image.image.url}}"
                                             alt="{{image.name}}">
                                     </a>
@@ -72,13 +63,13 @@
                                 <div class="col-md-12 modal-text">
                                     <h5 class="modal-title" id="modal-title"> {{image.name}} </h5>
                                     <hr>
-                                    <p>{{image.description}}</p>
-                                    <small class="small">Posted <span
+                                    <p><em>{{image.description}}</em></p>
+                                    <small class="small"><strong>Posted :</strong> <span
                                             class="font-weight-bold">{{image.post_date|timesince}}</span> ago </small>
-                                    <small class="small">Category <span
+                                    <br><small class="small"><strong>Category :</strong> <span
                                             class="font-weight-bold">{{image.category.photo_category}}</span></small>
                                     <ul class="list-inline">
-                                        <li class="list-inline-item"> Share
+                                        <li class="list-inline-item"> <strong>Share :</strong>
                                             <a class="twitter-share-button" class="tooltip-test"
                                                 title="Share on Twitter"
                                                 href="https://twitter.com/intent/tweet?text={{img.image.url}}"
