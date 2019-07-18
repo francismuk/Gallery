@@ -11,13 +11,12 @@ def index(request):
     locations = Location.get_all_locations()
     return render(request,'index.html', {'title':title,'images':images, 'categories':categories, 'locations':locations})
 
-def single_image(request, category, image_id):
+def single_image(request, category_name, image_id):
     locations = Location.objects.all()
-    
     image = Image.get_image_by_id(image_id)
-    images_category = Image.objects.filter(category__photo_category = category_name)
+    images = Image.objects.filter(category__photo_category = category_name)
     title = f'{category_name}'
-    return render(request,'single_image.html',{'title':title, 'image':image, 'image_category':image_category, 'locations':locations})
+    return render(request,'single_image.html',{'title':title, 'image':image, 'images':images, 'locations':locations})
 
 def location_filter(request, location):
     locations = Location.objects.all()
