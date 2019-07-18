@@ -2,6 +2,7 @@
 {% load bootstrap3 %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,14 +15,14 @@
     <div class="row">
         <h1>Welcome to Galgalo Gallery</h1>
         <div class="card-body">
-            <h2>Filter by</h2>
+            <h2>Filter by:</h2>
             <div class="row">
                 <div class="col-md-8">
                     <h3>Category</h3>
                     {% for category in categories %}
                     <div class='card'>
                         <!-- <ul> -->
-                        <p>{{category.photo_category}}</p>
+                        <p> <a href="#"> {{category.photo_category}}</a></p>
                         <!-- </ul> -->
                     </div>
                     {% endfor %}
@@ -31,18 +32,19 @@
                     {% for location in locations %}
                     <div class='card'>
                         <!-- <ul> -->
-                        <p>{{location.image_location}}</p>
+                        <p><a href="#">{{location.image_location}}</a></p>
                         <!-- </ul> -->
                     </div>
                     {% endfor %}
                 </div>
             </div>
+            </div>
             {% for image in images %}
             <div class="hover">
-                <div class="col-md-3 img-holder">
-                    <img style="height:250px;width: 280px;padding: 5px;" src="{{image.image.url}}" alt="Image">
+                <div class="col-md-3">
+                    <img style="height:260px;width: 290px;padding: 5px;" src="{{image.image.url}}" alt="Image">
                     <div class="overlay">
-                        <p class="jojo"><a data-toggle="modal" data-target="#{{image.id}}">{{image.name}}</a></p>
+                        <p class="jojo"><a data-toggle="modal" data-target="{{image.id}}">{{image.name}}</a></p>
                     </div>
                 </div>
             </div>
@@ -71,10 +73,10 @@
                                     <h5 class="modal-title" id="modal-title"> {{image.name}} </h5>
                                     <hr>
                                     <p>{{image.description}}</p>
-                                    <p class="small">Posted <span
-                                            class="font-weight-bold">{{image.post_date|timesince}}</span> ago </p>
-                                    <p class="small">Category <span
-                                            class="font-weight-bold">{{image.category.photo_category}}</span></p>
+                                    <small class="small">Posted <span
+                                            class="font-weight-bold">{{image.post_date|timesince}}</span> ago </small>
+                                    <small class="small">Category <span
+                                            class="font-weight-bold">{{image.category.photo_category}}</span></small>
                                     <ul class="list-inline">
                                         <li class="list-inline-item"> Share
                                             <a class="twitter-share-button" class="tooltip-test"
@@ -93,6 +95,8 @@
             </div>
 
             {% endfor %}
+            </div>
+            </div>
             {% endblock %}
 
 
