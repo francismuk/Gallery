@@ -2,46 +2,43 @@
 {% load bootstrap3 %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gallery</title>
 </head>
-
-    {% block content %}
-    {{block.super}}
-    <div class="container">
-            <div class="row">
+{% block content %}
+{{block.super}}
+<div class="container">
+    <div class="row">
         <h1>Welcome to Galgalo Gallery</h1>
-        <div class="jumbotron">
-        <h2>Filter by</h2>
-        <div class="row">
+        <div class="card-body">
+            <h2>Filter by</h2>
+            <div class="row">
                 <div class="col-md-8">
-        {% for category in categories %}
-        
-        <div class='categories'>
-            <ul>
-                <li>{{category.photo_category}}</li>
-            </ul>
-        </div>
-    
-        {% endfor %}
-    </div>
-        {% for location in locations %}
-            <div class="col-md-8">
-                    <div class='locations'>
-                            <ul>
-                                <li>{{location.image_location}}</li>
-                            </ul>
-                        </div>
+                    <h3>Category</h3>
+                    {% for category in categories %}
+                    <div class='card'>
+                        <!-- <ul> -->
+                        <p>{{category.photo_category}}</p>
+                        <!-- </ul> -->
+                    </div>
+                    {% endfor %}
                 </div>
-        {% endfor %}
-
-    </div>
-        {% for image in images %}
-        <div class="hover">
+                <div class="col-md-4">
+                    <h3>Location</h3>
+                    {% for location in locations %}
+                    <div class='card'>
+                        <!-- <ul> -->
+                        <p>{{location.image_location}}</p>
+                        <!-- </ul> -->
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% for image in images %}
+            <div class="hover">
                 <div class="col-md-3 img-holder">
                     <img style="height:250px;width: 280px;padding: 5px;" src="{{image.image.url}}" alt="Image">
                     <div class="overlay">
@@ -50,51 +47,53 @@
                 </div>
             </div>
 
-        {% empty %}
-        <div class="row">
-            <h2 class="text-center">There No Images</h2>
-        </div>
-        {% endfor %}
+            {% empty %}
+            <div class="row">
+                <h2 class="text-center">There No Images</h2>
+            </div>
+            {% endfor %}
 
-        {% for image in images %}
+            {% for image in images %}
 
-        <div class="modal fade bd-example-modal-lg" id="{{image.id}}" tabindex="-1" role="dialog"
-            aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-md-12 modal-image">
-                                <a href="/image/{{image.category.photo_category}}/{{image.id}}">
-                                    <img style="height: 500px; width:500px;" src="{{image.image.url}}" alt="{{image.name}}">
-                                </a>
-                            </div>
-                            <div class="col-md-12 modal-text">
-                                <h5 class="modal-title" id="modal-title"> {{image.name}} </h5>
-                                <hr>
-                                <p>{{image.description}}</p>
-                                <p class="small">Posted <span
-                                        class="font-weight-bold">{{image.post_date|timesince}}</span> ago </p>
-                                <p class="small">Category <span
-                                        class="font-weight-bold">{{image.category.photo_category}}</span></p>
-                                <ul class="list-inline">
-                                    <li class="list-inline-item"> Share
-                                        <a class="twitter-share-button" class="tooltip-test" title="Share on Twitter"
-                                            href="https://twitter.com/intent/tweet?text={{img.image.url}}"
-                                            target="_blank">
-                                            <i class="fa fa-twitter fa-1x"></i>
-                                        </a>
-                                    </li>
-                                </ul>
+            <div class="modal fade bd-example-modal-lg" id="{{image.id}}" tabindex="-1" role="dialog"
+                aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-md-12 modal-image">
+                                    <a href="/image/{{image.category.photo_category}}/{{image.id}}">
+                                        <img style="height: 500px; width:500px;" src="{{image.image.url}}"
+                                            alt="{{image.name}}">
+                                    </a>
+                                </div>
+                                <div class="col-md-12 modal-text">
+                                    <h5 class="modal-title" id="modal-title"> {{image.name}} </h5>
+                                    <hr>
+                                    <p>{{image.description}}</p>
+                                    <p class="small">Posted <span
+                                            class="font-weight-bold">{{image.post_date|timesince}}</span> ago </p>
+                                    <p class="small">Category <span
+                                            class="font-weight-bold">{{image.category.photo_category}}</span></p>
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item"> Share
+                                            <a class="twitter-share-button" class="tooltip-test"
+                                                title="Share on Twitter"
+                                                href="https://twitter.com/intent/tweet?text={{img.image.url}}"
+                                                target="_blank">
+                                                <i class="fa fa-twitter fa-1x"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-        
-    {% endfor %}
-    {% endblock %}
+
+            {% endfor %}
+            {% endblock %}
 
 
 
