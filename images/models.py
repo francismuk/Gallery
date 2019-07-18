@@ -22,6 +22,11 @@ class Category(models.Model):
         self.update_category()
     
     @classmethod
+    def get_all_categories(cls):
+        all_categories = Category.objects.all()
+        return all_categories
+    
+    @classmethod
     def get_category_id(cls, id):
         category = Category.objects.get(pk = id)
         return category
