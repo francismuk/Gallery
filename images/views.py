@@ -8,7 +8,8 @@ def index(request):
     title = 'Home'
     images = Image.get_all_images()
     categories = Category.get_all_categories()
-    return render(request,'index.html', {'title':title,'images':images, 'categories':categories})
+    locations = Location.get_all_locations()
+    return render(request,'index.html', {'title':title,'images':images, 'categories':categories, 'locations':locations})
 
 def single_image(request, category, image_id):
     locations = Location.objects.all()
