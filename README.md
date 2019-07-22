@@ -48,7 +48,7 @@ To run the tests for the class files:
 | -------------------|-----------------------| -----------------------------------|
 | request page       | click horuku link url | view images          |
 |view images according to categories or location| click on a category or location item   |    user goes to page containing similar item    |                      
-|all images        | navebar home  | view all images          |
+|all images        | navbar home  | view all images          |
 ## Contact Information
 For any questions, troubleshooting or contributions, find me on:
 Email: mukd3v3lop3r@gmail.com
